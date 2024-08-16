@@ -1,4 +1,10 @@
+import Layout from "@/components/Layout";
+import type { Metadata } from 'next'
 import "./globals.css";
+ 
+export const metadata: Metadata = {
+  title: "Yakumo's blog",
+}
 
 export default function RootLayout({
   children,
@@ -7,7 +13,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Layout>{children}</Layout>
+      </body>
     </html>
   );
 }
