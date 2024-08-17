@@ -92,8 +92,6 @@ export async function getCategories() {
 //Get all posts by tag
 export async function getPostsByTag(tag: string) {
     if (fileList.length > 0) {
-        console.log(tag)
-        console.log(fileList.filter(({ meta }) => meta.tags.includes(tag)).map(({ meta, filename }) => ({ meta, filename })))
         return fileList.filter(({ meta }) => meta.tags.includes(tag)).map(({ meta, filename }) => ({ meta, filename }))
     }
     let res = await getPostLists()

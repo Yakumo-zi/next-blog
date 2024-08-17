@@ -28,8 +28,8 @@ export default async function Home({
           return (
             <Link
               className={cn(
-                "rounded-full bg-indigo-300 w-6 h-6 inline-flex justify-center items-center text-slate-900 hover:bg-indigo-400 transition-all ease-in-out",
-                page === i ? "bg-purple-400" : ""
+                "rounded-full bg-violet-50 w-6 h-6 inline-flex justify-center items-center text-slate-900 hover:bg-violet-300 transition-all ease-in-out",
+                page === i ? "bg-rose-300" : ""
               )}
               key={i}
               href={`?page=${i}`}
@@ -39,7 +39,7 @@ export default async function Home({
           );
         })}
       </div>
-      <TagsCard/>
+      <TagsCard />
     </div>
   );
 }
