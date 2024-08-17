@@ -21,10 +21,24 @@ const tagVariants = cva(
   }
 );
 
-type Props = {} & ComponentProps<"span"> & VariantProps<typeof tagVariants>;
-const Tag = ({ className, variant, size, children, ...props }: Props) => {
+type Props = {
+  callback?: Function;
+} & ComponentProps<"span"> &
+  VariantProps<typeof tagVariants>;
+const Tag = ({
+  className,
+  variant,
+  size,
+  children,
+  callback,
+  ...props
+}: Props) => {
   return (
-    <span className={cn(tagVariants({ variant, size }), className)} {...props}>
+    <span
+      onClick={(e) => callback && callback(e)}
+      className={cn(tagVariants({ variant, size }), className)}
+      {...props}
+    >
       {children}
     </span>
   );

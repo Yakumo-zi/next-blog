@@ -1,6 +1,7 @@
 import { ComponentProps } from "react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import TagsCard from "../TagsCard/TagsCard";
 type Props = ComponentProps<"div">;
 const Layout = ({ children, ...props }: Props) => {
   return (
@@ -13,6 +14,7 @@ const Layout = ({ children, ...props }: Props) => {
       {children}
       </main>
       <Footer />
+      <TagsCard />
     </div>
   );
 };

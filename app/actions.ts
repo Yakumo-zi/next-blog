@@ -10,6 +10,7 @@ const fileList = new Array<{
 }>()
 
 export async function getPostLists() {
+    fileList.length = 0;
     let res = new Array<string>
     let traverse = (dir: string) => {
         const filenames = fs.readdirSync(dir)
@@ -29,7 +30,6 @@ export async function getPostLists() {
     return res
 }
 export async function getPostMetadata() {
-    if (fileList.length > 0) return fileList.map(({ meta, filename }) => ({ meta, filename }))
     let res = await getPostLists()
     for (const filename of res) {
         const content = (await getPostContent(filename))
@@ -40,7 +40,6 @@ export async function getPostMetadata() {
 }
 
 export async function getPagePosts(page: number) {
-    if (fileList.length > 0) return fileList.slice((page - 1) * 5, page * 5).map(({ meta, filename }) => ({ meta, filename }))
     let res = await getPostLists()
     for (const filename of res) {
         const content = (await getPostContent(filename))
@@ -51,7 +50,6 @@ export async function getPagePosts(page: number) {
 }
 
 export async function getPages() {
-    if (fileList.length > 0) return Math.ceil(fileList.length / 5)
     let res = await getPostLists()
     for (const filename of res) {
         const content = (await getPostContent(filename))
@@ -62,10 +60,6 @@ export async function getPages() {
 }
 //Get all tags
 export async function getTags() {
-    if (fileList.length > 0) {
-        const tags = fileList.map(({ meta }) => meta.tags).flat()
-        return Array.from(new Set(tags))
-    }
     let res = await getPostLists()
     for (const filename of res) {
         const content = (await getPostContent(filename))
@@ -77,10 +71,6 @@ export async function getTags() {
 }
 //Get all categories
 export async function getCategories() {
-    if (fileList.length > 0) {
-        const categories = fileList.map(({ meta }) => meta.category)
-        return Array.from(new Set(categories))
-    }
     let res = await getPostLists()
     for (const filename of res) {
         const content = (await getPostContent(filename))
@@ -92,9 +82,6 @@ export async function getCategories() {
 }
 //Get all posts by tag
 export async function getPostsByTag(tag: string) {
-    if (fileList.length > 0) {
-        return fileList.filter(({ meta }) => meta.tags.includes(tag)).map(({ meta, filename }) => ({ meta, filename }))
-    }
     let res = await getPostLists()
     for (const filename of res) {
         const content = (await getPostContent(filename))
@@ -105,9 +92,6 @@ export async function getPostsByTag(tag: string) {
 }
 //Get all posts by category
 export async function getPostsByCategory(category: string) {
-    if (fileList.length > 0) {
-        return fileList.filter(({ meta }) => meta.category == category).map(({ meta, filename }) => ({ meta, filename }))
-    }
     let res = await getPostLists()
     for (const filename of res) {
         const content = (await getPostContent(filename))
@@ -120,10 +104,6 @@ export async function getPostsByCategory(category: string) {
 export async function getPostContent(filePath: string) {
     if (!filePath.endsWith(".md") && !filePath.endsWith(".mdx")) return
     if (!fs.existsSync(path.join("posts", filePath))) return
-    if (fileList.length > 0) {
-        const file = fileList.find(({ filename }) => filename == filePath)
-        if (file) return { content: file.content, frontmatter: file.meta }
-    }
     const fileContent = fs.readFileSync(path.join("posts", filePath), "utf8")
     return await compileMDX<{ title: string, published: string, tags: Array<string>, category: string, description: string }>({ source: fileContent, options: { parseFrontmatter: true } })
 }
