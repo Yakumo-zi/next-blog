@@ -3,14 +3,14 @@ import { compileMDX } from 'next-mdx-remote/rsc';
 import fs from 'node:fs'
 import path from 'node:path';
 import { JSXElementConstructor, ReactElement } from 'react';
-const fileList = new Array<{
+
+type FileList = Array<{
     meta: {
         title: string, published: string, tags: Array<string>, category: string, description: string,
     }, filename: string, content: ReactElement<any, string | JSXElementConstructor<any>>
-}>()
+}>
 
 export async function getPostLists() {
-    fileList.length = 0;
     let res = new Array<string>
     let traverse = (dir: string) => {
         const filenames = fs.readdirSync(dir)
@@ -30,6 +30,7 @@ export async function getPostLists() {
     return res
 }
 export async function getPostMetadata() {
+    const fileList: FileList = []
     let res = await getPostLists()
     for (const filename of res) {
         const content = (await getPostContent(filename))
@@ -40,6 +41,7 @@ export async function getPostMetadata() {
 }
 
 export async function getPagePosts(page: number) {
+    const fileList: FileList = []
     let res = await getPostLists()
     for (const filename of res) {
         const content = (await getPostContent(filename))
@@ -50,6 +52,7 @@ export async function getPagePosts(page: number) {
 }
 
 export async function getPages() {
+    const fileList: FileList = []
     let res = await getPostLists()
     for (const filename of res) {
         const content = (await getPostContent(filename))
@@ -60,6 +63,7 @@ export async function getPages() {
 }
 //Get all tags
 export async function getTags() {
+    const fileList: FileList = []
     let res = await getPostLists()
     for (const filename of res) {
         const content = (await getPostContent(filename))
@@ -71,6 +75,7 @@ export async function getTags() {
 }
 //Get all categories
 export async function getCategories() {
+    const fileList: FileList = []
     let res = await getPostLists()
     for (const filename of res) {
         const content = (await getPostContent(filename))
@@ -82,6 +87,7 @@ export async function getCategories() {
 }
 //Get all posts by tag
 export async function getPostsByTag(tag: string) {
+    const fileList: FileList = []
     let res = await getPostLists()
     for (const filename of res) {
         const content = (await getPostContent(filename))
@@ -93,6 +99,7 @@ export async function getPostsByTag(tag: string) {
 //Get all posts by category
 export async function getPostsByCategory(category: string) {
     let res = await getPostLists()
+    const fileList: FileList = []
     for (const filename of res) {
         const content = (await getPostContent(filename))
         if (!content) continue
