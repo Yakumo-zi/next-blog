@@ -5,12 +5,11 @@ type Props = ComponentProps<"div">;
 const Layout = ({ children, ...props }: Props) => {
   return (
     <div
-      className="container mx-auto max-w-5xl flex flex-col min-h-screen px-4"
+      className="container mx-auto max-w-5xl flex flex-col min-h-screen px-4 max-h-screen"
       {...props}
     >
       <Header />
       <main>
-
       {children}
       </main>
       <Footer />
