@@ -1,4 +1,4 @@
-const Page = () => {
+const Page = async () => {
   return (
     <div className=" container w-full h-full flex items-center justify-center ">
       Category

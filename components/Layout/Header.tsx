@@ -5,7 +5,7 @@ type Props = {} & ComponentProps<"div">;
 export const Header = ({ ...props }: Props) => {
   return (
     <div
-      className="container  min-h-20 flex justify-between items-center "
+      className="container  min-h-20 flex justify-between items-center sticky "
       {...props}
     >
       <Link href={"/"} className=" font-bold text-xl">

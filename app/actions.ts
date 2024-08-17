@@ -59,6 +59,64 @@ export async function getPages() {
     }
     return Math.ceil(fileList.length / 5)
 }
+//Get all tags
+export async function getTags() {
+    if (fileList.length > 0) {
+        const tags = fileList.map(({ meta }) => meta.tags).flat()
+        return Array.from(new Set(tags))
+    }
+    let res = await getPostLists()
+    for (const filename of res) {
+        const content = (await getPostContent(filename))
+        if (!content) continue
+        fileList.push({ meta: content.frontmatter, filename, content: content.content })
+    }
+    const tags = fileList.map(({ meta }) => meta.tags).flat()
+    return Array.from(new Set(tags))
+}
+//Get all categories
+export async function getCategories() {
+    if (fileList.length > 0) {
+        const categories = fileList.map(({ meta }) => meta.category)
+        return Array.from(new Set(categories))
+    }
+    let res = await getPostLists()
+    for (const filename of res) {
+        const content = (await getPostContent(filename))
+        if (!content) continue
+        fileList.push({ meta: content.frontmatter, filename, content: content.content })
+    }
+    const categories = fileList.map(({ meta }) => meta.category)
+    return Array.from(new Set(categories))
+}
+//Get all posts by tag
+export async function getPostsByTag(tag: string) {
+    if (fileList.length > 0) {
+        console.log(tag)
+        console.log(fileList.filter(({ meta }) => meta.tags.includes(tag)).map(({ meta, filename }) => ({ meta, filename })))
+        return fileList.filter(({ meta }) => meta.tags.includes(tag)).map(({ meta, filename }) => ({ meta, filename }))
+    }
+    let res = await getPostLists()
+    for (const filename of res) {
+        const content = (await getPostContent(filename))
+        if (!content) continue
+        fileList.push({ meta: content.frontmatter, filename, content: content.content })
+    }
+    return fileList.filter(({ meta }) => meta.tags.includes(tag)).map(({ meta, filename }) => ({ meta, filename }))
+}
+//Get all posts by category
+export async function getPostsByCategory(category: string) {
+    if (fileList.length > 0) {
+        return fileList.filter(({ meta }) => meta.category == category).map(({ meta, filename }) => ({ meta, filename }))
+    }
+    let res = await getPostLists()
+    for (const filename of res) {
+        const content = (await getPostContent(filename))
+        if (!content) continue
+        fileList.push({ meta: content.frontmatter, filename, content: content.content })
+    }
+    return fileList.filter(({ meta }) => meta.category == category).map(({ meta, filename }) => ({ meta, filename }))
+}
 
 export async function getPostContent(filePath: string) {
     if (!filePath.endsWith(".md") && !filePath.endsWith(".mdx")) return

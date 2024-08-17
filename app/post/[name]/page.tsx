@@ -6,11 +6,7 @@ export default async function Page({ params }: { params: { name: string } }) {
   return (
     <>
       <div className="flex my-4">
-        {res?.frontmatter.published && (
-          <span className="px-2 bg-slate-300 rounded-lg text-zinc-600">
-            {res.frontmatter.published}
-          </span>
-        )}
+        {res?.frontmatter.published && <Tag>{res.frontmatter.published}</Tag>}
         <div className="flex-1 flex justify-end gap-1">
           {res?.frontmatter.tags && (
             <>
