@@ -18,7 +18,7 @@ export default async function Page({ params }: { params: { name: string } }) {
         </div>
       </div>
       <div className="bg-slate-50 p-2 shadow-lg">
-        <article className="prose lg:prose-md min-w-full prose-h1:text-center prose-pre:bg-gray-900 ">
+        <article className="prose lg:prose-md min-w-full prose-h1:text-center prose-pre:bg-gray-900">
           {res?.content}
         </article>
       </div>
