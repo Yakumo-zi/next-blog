@@ -11,12 +11,8 @@ export type BlogPost = {
     filename: string, content: string
 }
 
-const fileList: BlogPost[] = []
-const flags = { running: false } //TODO Find a better way to handle this
-
 async function readPostsDirectory() {
-    if (flags.running) return
-    flags.running = true
+    const fileList: BlogPost[] = []
     fileList.splice(0, fileList.length)
     let res = await getPostLists()
     for (const filename of res) {
@@ -25,14 +21,11 @@ async function readPostsDirectory() {
         fileList.push({ meta: content.meta, filename, content: content.content })
     }
     fileList.sort((a, b) => a.meta.published > b.meta.published ? -1 : 1)
-    flags.running = false
     return fileList
 }
 
 async function getAllPosts() {
-    if (fileList.length > 0) return fileList
-    await readPostsDirectory()
-    return null
+    return await readPostsDirectory()
 }
 
 export async function getPostLists() {
