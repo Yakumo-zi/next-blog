@@ -8,7 +8,6 @@ import Tag from "../UI/Tag";
 type Props = {} & ComponentProps<"div">;
 const mostLanguagesPicture =
   "https://github-readme-stats-iota-sandy-24.vercel.app/api/top-langs/?username=Yakumo-zi&layout=compact&size_weight=0.5&count_weight=0.5&exclude_repo=github-readme-stats,mcu_study,dotfiles,build-your-own-x,note,rust&hide=Makefile,HTML,Assembly,Shell,CMake";
-const avatarPicture = "https://avatars.githubusercontent.com/u/78243070?v=4";
 
 const ProfileCard = ({ className, ...props }: Props) => {
   return (
@@ -25,7 +24,7 @@ const ProfileCard = ({ className, ...props }: Props) => {
       >
         <Image
           className=" rounded-md"
-          src={avatarPicture}
+          src={'/avatar.jpg'}
           priority={true}
           alt="avatar"
           width={100}

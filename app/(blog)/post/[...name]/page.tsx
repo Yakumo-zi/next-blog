@@ -55,7 +55,7 @@ export default async function Page({ params }: { params: { name: string[] } }) {
                     children={String(children).replace(/\n$/, "")}
                   />
                 ) : (
-                  <code {...rest} className={className}>
+                  <code {...rest} className="bg-white text-red-600 px-2 rounded-md  before:content-[''] after:content-['']">
                     {children}
                   </code>
                 );
