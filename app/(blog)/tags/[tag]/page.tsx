@@ -5,6 +5,7 @@ import Tag from "@/components/UI/Tag";
 const Page = async ({ params }: { params: { tag: string } }) => {
   const tag = decodeURIComponent(params.tag);
   const res = await getPostsByTag(tag);
+  await new Promise((resolve) => setTimeout(resolve, 1000));
   return (
     <div className=" container w-full h-full flex flex-col gap-2 mb-4">
       <div className="flex gap-2 shrink-0">

@@ -2,6 +2,7 @@ import Layout from "@/components/Layout";
 import type { Metadata } from "next";
 import "./globals.css";
 import TagsCard from "@/components/TagsCard/TagsCard";
+import ProfileCard from "@/components/ProfileCard/ProfileCard";
 
 export const metadata: Metadata = {
   title: "Yakumo's blog",
@@ -21,7 +22,9 @@ export default function RootLayout({
           </div>
           <Layout>{children}</Layout>
 
-          <div className="flex-1 flex flex-col items-center pt-20"></div>
+          <div className="flex-1 flex flex-col items-center pt-20">
+            <ProfileCard className="shrink-0" />
+          </div>
         </div>
       </body>
     </html>
