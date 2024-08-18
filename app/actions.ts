@@ -11,6 +11,18 @@ export type BlogPost = {
     filename: string, content: ReactElement<any, string | JSXElementConstructor<any>>
 }
 
+async function getAllPosts() {
+    const fileList = []
+    let res = await getPostLists()
+    for (const filename of res) {
+        const content = (await getPostContent(filename))
+        if (!content) continue
+        fileList.push({ meta: content.meta, filename, content: content.content })
+    }
+    fileList.sort((a, b) => a.meta.published > b.meta.published ? -1 : 1)
+    return fileList
+}
+
 export async function getPostLists() {
     let res = new Array<string>
     let traverse = (dir: string) => {
@@ -31,81 +43,39 @@ export async function getPostLists() {
     return res
 }
 export async function getPostMetadata() {
-    const fileList = []
-    let res = await getPostLists()
-    for (const filename of res) {
-        const content = (await getPostContent(filename))
-        if (!content) continue
-        fileList.push({ meta: content.meta, filename, content: content.content })
-    }
+    const fileList = await getAllPosts()
     return fileList.map(({ meta, filename }) => ({ meta, filename }))
 }
 
 export async function getPagePosts(page: number) {
-    const fileList = []
-    let res = await getPostLists()
-    for (const filename of res) {
-        const content = (await getPostContent(filename))
-        if (!content) continue
-        fileList.push({ meta: content.meta, filename, content: content.content })
-    }
+    const fileList = await getAllPosts()
     return fileList.slice((page - 1) * 5, page * 5).map(({ meta, filename }) => ({ meta, filename }))
 }
 
 export async function getPages() {
-    const fileList = []
-    let res = await getPostLists()
-    for (const filename of res) {
-        const content = (await getPostContent(filename))
-        if (!content) continue
-        fileList.push({ meta: content.meta, filename, content: content.content })
-    }
+    const fileList = await getAllPosts()
     return Math.ceil(fileList.length / 5)
 }
 //Get all tags
 export async function getTags() {
-    const fileList = []
-    let res = await getPostLists()
-    for (const filename of res) {
-        const content = (await getPostContent(filename))
-        if (!content) continue
-        fileList.push({ meta: content.meta, filename, content: content.content })
-    }
+    const fileList = await getAllPosts()
     const tags = fileList.map(({ meta }) => meta.tags).flat()
     return Array.from(new Set(tags))
 }
 //Get all categories
 export async function getCategories() {
-    const fileList = []
-    let res = await getPostLists()
-    for (const filename of res) {
-        const content = (await getPostContent(filename))
-        if (!content) continue
-        fileList.push({ meta: content.meta, filename, content: content.content })
-    }
+    const fileList = await getAllPosts()
     const categories = fileList.map(({ meta }) => meta.category)
     return Array.from(new Set(categories))
 }
 //Get all posts by tag
 export async function getPostsByTag(tag: string) {
-    const fileList = []
-    let res = await getPostLists()
-    for (const filename of res) {
-        const content = (await getPostContent(filename))
-        if (!content) continue
-        fileList.push({ meta: content.meta, filename, content: content.content })
-    }
+    const fileList = await getAllPosts()
     return fileList.filter(({ meta }) => meta.tags.includes(tag)).map(({ meta, filename }) => ({ meta, filename }))
 }
 //Get all posts by category
 export async function getPostsByCategory(category: string) {
-    let res = await getPostLists()
-    const fileList = []
-    for (const filename of res) {
-        const content = (await getPostContent(filename))
-        if (!content) continue
-        fileList.push({ meta: content.meta, filename, content: content.content })
-    }
+    const fileList = await getAllPosts()
     return fileList.filter(({ meta }) => meta.category == category)
 }
 
