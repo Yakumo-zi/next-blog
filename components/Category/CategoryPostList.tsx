@@ -1,5 +1,5 @@
 "use client";
-import { type PostMeta } from "@/app/actions";
+import { type PostMeta } from "@/app/(blog)/actions";
 import CategoryHeader from "./CategoryHeader";
 import { cn } from "@/utils";
 import { useState } from "react";

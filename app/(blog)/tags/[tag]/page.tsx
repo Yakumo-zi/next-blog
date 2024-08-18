@@ -1,4 +1,4 @@
-import { getPostsByTag } from "@/app/actions";
+import { getPostsByTag } from "@/app/(blog)/actions";
 import PostCard from "@/components/PostCard/PostCard";
 import Tag from "@/components/UI/Tag";
 

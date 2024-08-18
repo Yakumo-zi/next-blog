@@ -1,4 +1,4 @@
-import { PostMeta } from "@/app/actions";
+import { PostMeta } from "@/app/(blog)/actions";
 import { cn } from "@/utils";
 import Link from "next/link";
 import Tag from "../UI/Tag";

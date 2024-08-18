@@ -1,4 +1,4 @@
-import { getPostContent } from "@/app/actions";
+import { getPostContent } from "@/app/(blog)/actions";
 import Tag from "@/components/UI/Tag";
 import Link from "next/link";
 
