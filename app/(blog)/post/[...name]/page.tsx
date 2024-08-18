@@ -1,4 +1,5 @@
 import { getPostContent } from "@/app/(blog)/actions";
+import BackToTop from "@/components/BackToTop/BackToTop";
 import Tag from "@/components/UI/Tag";
 import Link from "next/link";
 import path from "path";
@@ -63,6 +64,7 @@ export default async function Page({ params }: { params: { name: string[] } }) {
           />
         </article>
       </div>
+      <BackToTop className="fixed bottom-4 right-10" />
     </>
   );
 }
