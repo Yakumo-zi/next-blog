@@ -14,7 +14,6 @@ const Layout = ({ children, ...props }: Props) => {
       {children}
       </main>
       <Footer />
-      <TagsCard />
     </div>
   );
 };

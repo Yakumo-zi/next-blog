@@ -39,6 +39,7 @@ export default async function Home({
           );
         })}
       </div>
+      <TagsCard />
     </div>
   );
 }

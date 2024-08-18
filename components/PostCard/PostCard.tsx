@@ -35,11 +35,23 @@ const PostCard = ({ filename, meta, ...props }: Props) => {
       </div>
       <div className="flex-1 flex items-end gap-2">
         <Tag className="bg-violet-50">{meta.published}</Tag>
-        <Tag className="bg-lime-50">{meta.category}</Tag>
+        <Tag
+          callback={(e:React.MouseEvent<HTMLSpanElement>) => {
+            e.preventDefault();
+            router.push("/category");
+          }}
+          className="bg-lime-50"
+        >
+          {meta.category}
+        </Tag>
         <div className="flex-1 flex justify-end gap-2">
           {meta.tags &&
             meta.tags.map((tag) => (
-              <Tag className="bg-cyan-50" onClick={(e) => onTagClick(e, tag)} key={tag}>
+              <Tag
+                className="bg-cyan-50"
+                callback={(e: any) => onTagClick(e, tag)}
+                key={tag}
+              >
                 #{tag}
               </Tag>
             ))}
