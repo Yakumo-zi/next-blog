@@ -1,7 +1,7 @@
 const Page = () => {
   return (
-    <div className="container w-full h-full flex justify-center items-center">
-      About me
+    <div className=" container w-full h-full flex flex-col gap-2">
+      Aboute Me
     </div>
   );
 };

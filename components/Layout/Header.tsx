@@ -18,9 +18,9 @@ export const Header = ({ ...props }: Props) => {
         <Link href={"/category"} className="text-md hover:underline">
           Category
         </Link>
-        <Link href={"/about"} className="text-md hover:underline">
+        {/* <Link href={"/about"} className="text-md hover:underline">
           About Me
-        </Link>
+        </Link> */}
         <Link
           href={"https://www.github.com/Yakumo-zi"}
           className="text-md hover:underline"
