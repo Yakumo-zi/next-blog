@@ -14,6 +14,7 @@ export default async function Home({
   const pages = await getPages();
   return (
     <div className="flex flex-col gap-4">
+      <TagsCard />
       {res.map(async (pair) => {
         return (
           <PostCard
@@ -29,7 +30,7 @@ export default async function Home({
             <Link
               className={cn(
                 "rounded-full bg-violet-50 w-6 h-6 inline-flex justify-center items-center text-slate-900 hover:bg-violet-300 transition-all ease-in-out",
-                page === i ? "bg-rose-300" : ""
+                page === i ? "bg-rose-300 animate-bounce" : ""
               )}
               key={i}
               href={`?page=${i}`}
@@ -39,7 +40,6 @@ export default async function Home({
           );
         })}
       </div>
-      <TagsCard />
     </div>
   );
 }
