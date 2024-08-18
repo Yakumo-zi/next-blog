@@ -1,11 +1,14 @@
-import { getTags } from "@/app/(blog)/actions";
 import Tag from "../UI/Tag";
 import Link from "next/link";
 import { cn, randomColor } from "@/utils";
 import { ComponentProps } from "react";
-type Props = ComponentProps<"div">;
-const TagsCard = async ({ className }: Props) => {
-  let tags = await getTags();
+type Props = {
+  tags?: string[];
+} & ComponentProps<"div">;
+const TagsCard = async ({ className, tags }: Props) => {
+  if (!tags) {
+    return null;
+  }
   return (
     <div
       className={cn(

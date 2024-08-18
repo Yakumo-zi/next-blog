@@ -4,19 +4,27 @@ import Link from "next/link";
 import path from "path";
 import Markdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import remarkGfm from 'remark-gfm'
+import remarkGfm from "remark-gfm";
 
 export default async function Page({ params }: { params: { name: string[] } }) {
   const name = path.join(...params.name);
   const res = await getPostContent(decodeURIComponent(name));
   return (
     <>
-      <div className="flex my-4">
-        {res?.meta.published && (
-          <Tag className="bg-violet-50 hover:transform-none">
-            {res.meta.published}
-          </Tag>
-        )}
+      <div className="flex mb-4">
+        <div className="flex gap-2">
+          {res?.meta.published && (
+            <Tag className="bg-violet-50 hover:transform-none">
+              {res.meta.published}
+            </Tag>
+          )}
+          {res?.filename && (
+            <Tag className="bg-violet-50 hover:transform-none">
+              {res.filename.split(path.sep).slice(-1)[0].split(".")[0]}
+            </Tag>
+          )}
+        </div>
+
         <div className="flex-1 flex justify-end gap-2">
           {res?.meta.tags && (
             <>
@@ -42,7 +50,7 @@ export default async function Page({ params }: { params: { name: string[] } }) {
                   <SyntaxHighlighter
                     language={match[1]}
                     PreTag="div"
-                    customStyle={{ margin: 0,borderRadius: "0.5rem" }}
+                    customStyle={{ margin: 0, borderRadius: "0.5rem" }}
                     children={String(children).replace(/\n$/, "")}
                   />
                 ) : (

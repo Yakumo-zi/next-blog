@@ -1,7 +1,8 @@
 'use server'
 import matter from 'gray-matter';
-import fs from 'node:fs'
+import fs, { read } from 'node:fs'
 import path from 'node:path';
+
 export type PostMeta = {
     title: string, published: string, tags: Array<string>, category: string, description: string,
 }
@@ -10,8 +11,13 @@ export type BlogPost = {
     filename: string, content: string
 }
 
-async function getAllPosts() {
-    const fileList = []
+const fileList: BlogPost[] = []
+const flags = { running: false } //TODO Find a better way to handle this
+
+async function readPostsDirectory() {
+    if (flags.running) return
+    flags.running = true
+    fileList.splice(0, fileList.length)
     let res = await getPostLists()
     for (const filename of res) {
         const content = (await getPostContent(filename))
@@ -19,7 +25,14 @@ async function getAllPosts() {
         fileList.push({ meta: content.meta, filename, content: content.content })
     }
     fileList.sort((a, b) => a.meta.published > b.meta.published ? -1 : 1)
+    flags.running = false
     return fileList
+}
+
+async function getAllPosts() {
+    if (fileList.length > 0) return fileList
+    await readPostsDirectory()
+    return null
 }
 
 export async function getPostLists() {
@@ -43,39 +56,39 @@ export async function getPostLists() {
 }
 export async function getPostMetadata() {
     const fileList = await getAllPosts()
-    return fileList.map(({ meta, filename }) => ({ meta, filename }))
+    return fileList?.map(({ meta, filename }) => ({ meta, filename }))
 }
 
 export async function getPagePosts(page: number) {
     const fileList = await getAllPosts()
-    return fileList.slice((page - 1) * 5, page * 5).map(({ meta, filename }) => ({ meta, filename }))
+    return fileList?.slice((page - 1) * 5, page * 5).map(({ meta, filename }) => ({ meta, filename }))
 }
 
 export async function getPages() {
     const fileList = await getAllPosts()
-    return Math.ceil(fileList.length / 5)
+    return Math.ceil(fileList!.length / 5)
 }
 //Get all tags
 export async function getTags() {
     const fileList = await getAllPosts()
-    const tags = fileList.map(({ meta }) => meta.tags).flat()
+    const tags = fileList?.map(({ meta }) => meta.tags).flat()
     return Array.from(new Set(tags))
 }
 //Get all categories
 export async function getCategories() {
     const fileList = await getAllPosts()
-    const categories = fileList.map(({ meta }) => meta.category)
+    const categories = fileList?.map(({ meta }) => meta.category)
     return Array.from(new Set(categories))
 }
 //Get all posts by tag
 export async function getPostsByTag(tag: string) {
     const fileList = await getAllPosts()
-    return fileList.filter(({ meta }) => meta.tags.includes(tag)).map(({ meta, filename }) => ({ meta, filename }))
+    return fileList?.filter(({ meta }) => meta.tags.includes(tag)).map(({ meta, filename }) => ({ meta, filename }))
 }
 //Get all posts by category
 export async function getPostsByCategory(category: string) {
     const fileList = await getAllPosts()
-    return fileList.filter(({ meta }) => meta.category == category)
+    return fileList?.filter(({ meta }) => meta.category == category)
 }
 
 export async function getPostContent(filePath: string): Promise<BlogPost> {

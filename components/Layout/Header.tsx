@@ -5,10 +5,10 @@ type Props = {} & ComponentProps<"div">;
 export const Header = ({ ...props }: Props) => {
   return (
     <div
-      className="container  min-h-20 flex justify-between items-center sticky "
+      className="container min-h-16 flex justify-between items-center sticky bg-white px-2 mb-4"
       {...props}
     >
-      <Link href={"/"} className=" font-bold text-xl">
+      <Link href={"/"} className=" font-bold text-2xl font-serif">  
         Yakumo's Blog
       </Link>
       <nav className="flex flex-[1] justify-end gap-3 ">

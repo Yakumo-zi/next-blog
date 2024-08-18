@@ -14,7 +14,7 @@ export default async function Home({
   const pages = await getPages();
   return (
     <div className="flex flex-col gap-4">
-      {res.map(async (pair) => {
+      {res?.slice(0,5).map(async (pair) => {
         return (
           <PostCard
             key={pair.filename}

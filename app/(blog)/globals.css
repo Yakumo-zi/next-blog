@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 body{
-  @apply bg-slate-50 scroll-smooth;
+  @apply bg-neutral-200 scroll-smooth antialiased;
 }
 ::-webkit-scrollbar {
   display: none;

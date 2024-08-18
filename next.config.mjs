@@ -5,7 +5,7 @@ const nextConfig = {
         remotePatterns:[
             {
                 protocol:"https",
-                hostname:"camo.githubusercontent.com",
+                hostname:"github-readme-stats-iota-sandy-24.vercel.app",
                 port:'',
                 pathname:"/**"
             },

@@ -16,16 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className="w-screen h-screen flex">
-          <div className="flex-1 flex flex-col items-center pt-20 gap-4">
-            <ProfileCard className="shrink-0 rounded-md" />
-            <TagsCard className="shrink-0" />
-          </div>
-          <Layout>{children}</Layout>
-
-          <div className="flex-1 flex flex-col items-center pt-20">
-          </div>
-        </div>
+        <Layout>{children}</Layout>
       </body>
     </html>
   );
