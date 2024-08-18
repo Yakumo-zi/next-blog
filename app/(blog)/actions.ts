@@ -1,14 +1,13 @@
 'use server'
-import { compileMDX } from 'next-mdx-remote/rsc';
+import matter from 'gray-matter';
 import fs from 'node:fs'
 import path from 'node:path';
-import { JSXElementConstructor, ReactElement } from 'react';
 export type PostMeta = {
     title: string, published: string, tags: Array<string>, category: string, description: string,
 }
 export type BlogPost = {
     meta: PostMeta,
-    filename: string, content: ReactElement<any, string | JSXElementConstructor<any>>
+    filename: string, content: string
 }
 
 async function getAllPosts() {
@@ -81,8 +80,9 @@ export async function getPostsByCategory(category: string) {
 
 export async function getPostContent(filePath: string): Promise<BlogPost> {
     if (!filePath.endsWith(".md") && !filePath.endsWith(".mdx")) return {} as any
-    if (!fs.existsSync(path.join("posts", filePath))) return {} as any
-    const fileContent = fs.readFileSync(path.join("posts", filePath), "utf8")
-    let compiledMD = await compileMDX<PostMeta>({ source: fileContent, options: { parseFrontmatter: true } })
-    return { meta: compiledMD.frontmatter, filename: filePath, content: compiledMD.content }
+    if (!fs.existsSync(filePath)) return {} as any
+    const fileContent = fs.readFileSync(filePath, "utf8")
+    let res = matter(fileContent)
+    res.data.published = new Date(res.data.published).toLocaleDateString()
+    return { meta: res.data as PostMeta, filename: filePath, content: res.content }
 }
