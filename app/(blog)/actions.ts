@@ -1,4 +1,5 @@
 'use server'
+import { formatDate } from '@/utils';
 import matter from 'gray-matter';
 import fs, { read } from 'node:fs'
 import path from 'node:path';
@@ -89,6 +90,6 @@ export async function getPostContent(filePath: string): Promise<BlogPost> {
     if (!fs.existsSync(filePath)) return {} as any
     const fileContent = fs.readFileSync(filePath, "utf8")
     let res = matter(fileContent)
-    res.data.published = new Date(res.data.published).toLocaleDateString()
+    res.data.published = formatDate(res.data.published)
     return { meta: res.data as PostMeta, filename: filePath, content: res.content }
 }

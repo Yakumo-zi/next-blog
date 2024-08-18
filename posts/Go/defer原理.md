@@ -1,7 +1,7 @@
 ---
 title: defer与异常处理
 published: 2023-11-07
-description: ""
+description: "defer的原理与异常"
 image: ""
 tags: [Go, 学习笔记]
 category: "Go"
