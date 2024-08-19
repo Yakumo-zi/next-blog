@@ -21,14 +21,14 @@ const CategoryPostList = ({ category, fileList }: Props) => {
     maxHeight = fileList.length * 45;
   }
   return (
-    <div className="w-full flex flex-col rounded-bl-md rounded-br-md overflow-hidden">
+    <div className="flex w-full flex-col overflow-hidden rounded-bl-md rounded-br-md">
       <CategoryHeader callback={() => setExpand(!expand)} category={category} />
       <div
         className={cn(
-          "w-full transition-all ease-in-out max-h-screen duration-200 ",
+          "max-h-screen w-full transition-all duration-200 ease-in-out",
           {
             "max-h-0 overflow-hidden": !expand,
-          }
+          },
         )}
       >
         {fileList.map((pair) => {

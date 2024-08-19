@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { cn } from "@/utils";
 import { ComponentProps } from "react";
 import { FaArrowUp } from "react-icons/fa";

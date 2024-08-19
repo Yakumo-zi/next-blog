@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { ComponentProps, useEffect, useState } from "react";
 
 const tagVariants = cva(
-  "inline-flex items-center justify-center rounded-md text-sm font-medium transition-all ease-in-out shadow-md hover:-translate-y-1 cursor-pointer",
+  "inline-flex cursor-pointer items-center justify-center rounded-md text-sm font-medium shadow-md transition-all ease-in-out hover:-translate-y-1",
   {
     variants: {
       variant: {
@@ -18,7 +18,7 @@ const tagVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 type Props = {

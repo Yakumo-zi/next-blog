@@ -6,14 +6,14 @@ const Page = async ({ params }: { params: { tag: string } }) => {
   const tag = decodeURIComponent(params.tag);
   const res = await getPostsByTag(tag);
   return (
-    <div className=" container w-full h-full flex flex-col gap-2 mb-4">
-      <div className="flex gap-2 shrink-0">
-        <Tag className="p-2 bg-rose-300 hover:transform-none">#{tag}</Tag>
-        <Tag className="p-2 bg-orange-300 hover:transform-none">
+    <div className="container mb-4 flex h-full w-full flex-col gap-2">
+      <div className="flex shrink-0 gap-2">
+        <Tag className="bg-rose-300 p-2 hover:transform-none">#{tag}</Tag>
+        <Tag className="bg-orange-300 p-2 hover:transform-none">
           Count:{res?.length}
         </Tag>
       </div>
-      <div className="w-full flex items-center justify-center flex-col gap-4 ">
+      <div className="flex w-full flex-col items-center justify-center gap-4">
         {res?.map((pair) => {
           return (
             <PostCard

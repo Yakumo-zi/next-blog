@@ -18,7 +18,7 @@ const PostCard = ({ filename, meta, ...props }: Props) => {
   const router = useRouter();
   const onTagClick = (
     event: React.MouseEvent<HTMLSpanElement>,
-    tag: string
+    tag: string,
   ) => {
     event.preventDefault();
     router.push(`/tags/${tag}`);
@@ -26,17 +26,17 @@ const PostCard = ({ filename, meta, ...props }: Props) => {
   return (
     <Link
       href={`/post/${filename}`}
-      className=" min-w-full min-h-36 flex flex-col bg-white  rounded-lg p-4 hover:bg-slate-200 transition-all ease-in-out shadow-md hover:shadow-lg"
+      className="flex min-h-36 min-w-full flex-col rounded-lg bg-white p-4 shadow-md transition-all ease-in-out hover:bg-slate-200 hover:shadow-lg"
       {...props}
     >
-      <h1 className="text-2xl font-bold mb-2">{meta.title}</h1>
-      <div className="text-sm text-pretty text-gray-600">
+      <h1 className="mb-2 text-2xl font-bold">{meta.title}</h1>
+      <div className="text-pretty text-sm text-gray-600">
         {meta.description}
       </div>
-      <div className="flex-1 flex items-end gap-2">
+      <div className="flex flex-1 items-end gap-2">
         <Tag className="bg-violet-50">{meta.published}</Tag>
         <Tag
-          callback={(e:React.MouseEvent<HTMLSpanElement>) => {
+          callback={(e: React.MouseEvent<HTMLSpanElement>) => {
             e.preventDefault();
             router.push("/category");
           }}
@@ -44,7 +44,7 @@ const PostCard = ({ filename, meta, ...props }: Props) => {
         >
           {meta.category}
         </Tag>
-        <div className="flex-1 flex justify-end gap-2">
+        <div className="flex flex-1 justify-end gap-2">
           {meta.tags &&
             meta.tags.map((tag) => (
               <Tag

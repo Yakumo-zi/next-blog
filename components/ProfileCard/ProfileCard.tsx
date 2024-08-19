@@ -13,36 +13,35 @@ const ProfileCard = ({ className, ...props }: Props) => {
   return (
     <div
       className={cn(
-        "w-[260px] flex flex-col items-center justify-center rounded-sm overflow-hidden gap-4 bg-white pb-2",
-        className
+        "flex w-[260px] flex-col items-center justify-center gap-4 overflow-hidden rounded-sm bg-white pb-2",
+        className,
       )}
       {...props}
     >
       <Link
         href="https://github.com/Yakumo-zi"
-        className="w-full flex items-center justify-around p-2 bg-sky-50"
+        className="flex w-full items-center justify-around bg-sky-50 p-2"
       >
         <Image
-          className=" rounded-md"
-          src={'/avatar.jpg'}
+          className="rounded-md"
+          src={"/avatar.jpg"}
           priority={true}
           alt="avatar"
           width={100}
           height={100}
-          unoptimized
         />
         <div className="flex flex-col gap-2">
-          <strong className="font-bold font-mono text-xl ">Yakumo-Zi</strong>
-          <Tag className="bg-sky-100 text-slate-900 font-mono shrink-0">
+          <strong className="font-mono text-xl font-bold">Yakumo-Zi</strong>
+          <Tag className="shrink-0 bg-sky-100 font-mono text-slate-900">
             Programmer
           </Tag>
-          <Tag className="bg-cyan-100 text-slate-900 font-mono shrink-0">
+          <Tag className="shrink-0 bg-cyan-100 font-mono text-slate-900">
             Learner
           </Tag>
         </div>
       </Link>
       <div className="w-11/12 p-2 shadow-md">
-        <span className=" italic text-lg text-pretty antialiased underline">
+        <span className="text-pretty text-lg italic underline antialiased">
           Talk is cheap. Show me the code.
         </span>
       </div>

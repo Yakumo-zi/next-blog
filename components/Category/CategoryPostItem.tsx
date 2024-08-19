@@ -18,7 +18,7 @@ const CategoryPostItem = ({ pair }: Props) => {
     >
       <div
         className={cn(
-          "w-full flex gap-2 p-2 box-border bg-white hover:bg-slate-100 transition-all ease-in-out border-b border-slate-100"
+          "box-border flex w-full gap-2 border-b border-slate-100 bg-white p-2 transition-all ease-in-out hover:bg-slate-100",
         )}
       >
         <span>{pair.meta.title}</span>
@@ -27,7 +27,7 @@ const CategoryPostItem = ({ pair }: Props) => {
             {" "}
             {pair.meta.published}
           </Tag>
-          <div className="min-w-48 flex gap-2 justify-around">
+          <div className="flex min-w-48 justify-around gap-2">
             {pair.meta.tags.slice(0, 3).map((tag) => {
               return (
                 <Tag key={tag} className="bg-cyan-50 hover:transform-none">

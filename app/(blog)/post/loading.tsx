@@ -3,18 +3,18 @@ import { cn } from "@/utils";
 const Loading = () => {
   return (
     <>
-      <div className=" flex gap-2 animate-pulse mb-2">
-        <div className="w-24 h-8 rounded-md bg-gray-300"></div>
-        <div className="w-24 h-8 rounded-md bg-gray-300"></div>
-        <div className="flex-1 flex animate-pulse mb-2 items-center justify-end gap-2 ">
-            <div className="w-24 h-8 rounded-md bg-gray-300"></div>
-            <div className="w-24 h-8 rounded-md bg-gray-300"></div>
-            <div className="w-24 h-8 rounded-md bg-gray-300"></div>
+      <div className="mb-2 flex animate-pulse gap-2">
+        <div className="h-8 w-24 rounded-md bg-gray-300"></div>
+        <div className="h-8 w-24 rounded-md bg-gray-300"></div>
+        <div className="mb-2 flex flex-1 animate-pulse items-center justify-end gap-2">
+          <div className="h-8 w-24 rounded-md bg-gray-300"></div>
+          <div className="h-8 w-24 rounded-md bg-gray-300"></div>
+          <div className="h-8 w-24 rounded-md bg-gray-300"></div>
         </div>
       </div>
       <div
         className={cn(
-          "container flex items-center justify-center min-w-full h-[780px]  bg-gray-300 rounded-lg animate-pulse"
+          "container flex h-[780px] min-w-full animate-pulse items-center justify-center rounded-lg bg-gray-300",
         )}
       >
         Loading...

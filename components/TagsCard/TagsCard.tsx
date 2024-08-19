@@ -12,14 +12,14 @@ const TagsCard = async ({ className, tags }: Props) => {
   return (
     <div
       className={cn(
-        " w-64 min-h-12 bg-stone-50 rounded-lg p-2 shadow-md flex flex-col justify-center items-center gap-2",
-        className
+        "flex min-h-12 w-64 flex-col items-center justify-center gap-2 rounded-lg bg-stone-50 p-2 shadow-md",
+        className,
       )}
     >
-      <div className="w-full border-b-2 inline-flex justify-center items-center pb-2 select-none">
+      <div className="inline-flex w-full select-none items-center justify-center border-b-2 pb-2">
         All Tags
       </div>
-      <div className="  flex flex-wrap justify-evenly gap-2">
+      <div className="flex flex-wrap justify-evenly gap-2">
         {tags.map((tag) => (
           <Tag key={tag} className={`m-1shrink-0 ${randomColor()}`}>
             <Link href={`/tags/${tag}`}>#{tag}</Link>

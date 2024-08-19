@@ -12,7 +12,7 @@ export default async function Page({ params }: { params: { name: string[] } }) {
   const res = await getPostContent(decodeURIComponent(name));
   return (
     <>
-      <div className="flex mb-4">
+      <div className="mb-4 flex">
         <div className="flex gap-2">
           {res?.meta.published && (
             <Tag className="bg-violet-50 hover:transform-none">
@@ -26,12 +26,12 @@ export default async function Page({ params }: { params: { name: string[] } }) {
           )}
         </div>
 
-        <div className="flex-1 flex justify-end gap-2">
+        <div className="flex flex-1 justify-end gap-2">
           {res?.meta.tags && (
             <>
               {res.meta.tags.slice(0, 5).map((tag) => (
                 <Link href={`/tags/${tag}`} key={tag}>
-                  <Tag className=" bg-cyan-50">#{tag}</Tag>
+                  <Tag className="bg-cyan-50">#{tag}</Tag>
                 </Link>
               ))}
             </>
@@ -39,7 +39,7 @@ export default async function Page({ params }: { params: { name: string[] } }) {
         </div>
       </div>
       <div className="bg-slate-50 p-2 shadow-lg">
-        <article className="prose min-w-full prose-h1:text-center prose-img:rounded-md prose-img:mx-auto prose-pre:bg-transparent prose-pre:p-0 prose-pre:m-0">
+        <article className="prose min-w-full prose-h1:text-center prose-pre:m-0 prose-pre:bg-transparent prose-pre:p-0 prose-img:mx-auto prose-img:rounded-md">
           <Markdown
             remarkPlugins={[remarkGfm]}
             children={res?.content}
@@ -55,7 +55,10 @@ export default async function Page({ params }: { params: { name: string[] } }) {
                     children={String(children).replace(/\n$/, "")}
                   />
                 ) : (
-                  <code {...rest} className="bg-white text-red-600 px-2 rounded-md  before:content-[''] after:content-['']">
+                  <code
+                    {...rest}
+                    className="rounded-md bg-white px-2 text-red-600 before:content-[''] after:content-['']"
+                  >
                     {children}
                   </code>
                 );
