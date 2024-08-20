@@ -1,15 +1,18 @@
-import { getPostContent } from "@/app/(blog)/actions";
+import { getContentByName, getPostContent } from "@/app/(blog)/actions";
 import BackToTop from "@/components/BackToTop/BackToTop";
 import Tag from "@/components/UI/Tag";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import path from "path";
 import Markdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import remarkGfm from "remark-gfm";
 
-export default async function Page({ params }: { params: { name: string[] } }) {
-  const name = path.join(...params.name);
-  const res = await getPostContent(decodeURIComponent(name));
+export default async function Page({ params }: { params: { name: string } }) {
+  const res = await getContentByName(decodeURIComponent(params.name));
+  if(res==null){
+    redirect("/")
+  }
   return (
     <>
       <div className="mb-4 flex">
