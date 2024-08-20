@@ -1,5 +1,5 @@
 import CategoryPostList from "@/components/Category/CategoryPostList";
-import { getCategories, getPostsByCategory, type BlogPost } from "../actions";
+import { getCategories, getPostsByCategory, type BlogPost } from "../../actions";
 import Tag from "@/components/UI/Tag";
 
 const Page = async () => {

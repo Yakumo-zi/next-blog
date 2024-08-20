@@ -3,7 +3,7 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import ProfileCard from "../ProfileCard/ProfileCard";
 import TagsCard from "../TagsCard/TagsCard";
-import { getTags } from "@/app/(blog)/actions";
+import { getTags } from "@/app/actions";
 type Props = ComponentProps<"div">;
 const Layout = async ({ children, ...props }: Props) => {
   const tags = await getTags();

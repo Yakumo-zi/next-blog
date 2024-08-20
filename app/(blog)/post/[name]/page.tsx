@@ -1,4 +1,4 @@
-import { getContentByName, getPostContent } from "@/app/(blog)/actions";
+import { getContentByName, getPostContent } from "@/app/actions";
 import BackToTop from "@/components/BackToTop/BackToTop";
 import Tag from "@/components/UI/Tag";
 import Link from "next/link";
