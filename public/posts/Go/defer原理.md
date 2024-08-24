@@ -29,7 +29,7 @@ func deferExample1() {
 }
 ```
 
-![image-20231107220137706](/defer%E5%8E%9F%E7%90%86.assets/f54c5912d1664675b58757611dfaef50tplv-k3u1fbpfcp-jj-mark3024000q75.webp)
+![image-20231107220137706](./defer%E5%8E%9F%E7%90%86.assets/f54c5912d1664675b58757611dfaef50tplv-k3u1fbpfcp-jj-mark3024000q75.webp)
 
 可以看到实现执行了函数内部的其他代码，最后才执行的`defer`语句，`defer`关键字之后不仅可以跟一条语句，还可以跟一个函数的调用语句，示例如下：
 
@@ -42,7 +42,7 @@ func deferExample2() {
 }
 ```
 
-![image-20231107220524459](/defer%E5%8E%9F%E7%90%86.assets/f92ba71d46d843899cabe9a38628e349tplv-k3u1fbpfcp-jj-mark3024000q75.webp)
+![image-20231107220524459](./defer%E5%8E%9F%E7%90%86.assets/f92ba71d46d843899cabe9a38628e349tplv-k3u1fbpfcp-jj-mark3024000q75.webp)
 
 并且在一个函数中可以使用`defer`关键字注册多个函数的调用语句，或者普通语句，示例如下：
 
@@ -60,11 +60,11 @@ func deferExample3() {
 }
 ```
 
-![image-20231107220939503](/defer%E5%8E%9F%E7%90%86.assets/7f53639d4e754d0494e1328b527b8348tplv-k3u1fbpfcp-jj-mark3024000q75.webp)
+![image-20231107220939503](./defer%E5%8E%9F%E7%90%86.assets/7f53639d4e754d0494e1328b527b8348tplv-k3u1fbpfcp-jj-mark3024000q75.webp)
 
 这里我们可以看到，`defer`注册语句的执行顺序与注册顺序相反，我们是按照1,2,3,4的顺序注册的，而调用是按照4,3,2,1的顺序调用的。这是因为在Go语言的运行时在函数执行期间维护了一个“链栈”，每次调用`defer`就会在这个“链栈”中新增一项，而我们知道栈这种数据结构具有FILO（First In Last Out）的特性的，所以最先注册的`defer`语句会被最后调用，具体的过程如下所示：
 
-![image-20231107222133876](/defer%E5%8E%9F%E7%90%86.assets/5dd1b7cf4da6400fb80a7aea8af22393tplv-k3u1fbpfcp-jj-mark3024000q75.webp)
+![image-20231107222133876](./defer%E5%8E%9F%E7%90%86.assets/5dd1b7cf4da6400fb80a7aea8af22393tplv-k3u1fbpfcp-jj-mark3024000q75.webp)
 
 这张图清晰的解释了`defer`的整个工作流程，可以看到`defer`语句是如何注册，如何执行的。并且还有关键的一点就是，`derfer`并不是在函数返回完成之后执行的，**而是在函数返回期间执行的**，因为函数的返回并不是一个原子操作，返回期间要做很多事情，比如处理函数栈帧时，就要释放局部变量、给返回值寄存器赋值等等，所以`defer`语句也是在返回期间完成的。
 
@@ -85,7 +85,7 @@ func deferExample4() {
 }
 ```
 
-![image-20231107223215404](/defer%E5%8E%9F%E7%90%86.assets/bea71a589d00499ca07d52464bac0917tplv-k3u1fbpfcp-jj-mark3024000q75.webp)
+![image-20231107223215404](./defer%E5%8E%9F%E7%90%86.assets/bea71a589d00499ca07d52464bac0917tplv-k3u1fbpfcp-jj-mark3024000q75.webp)
 
 我们可以看到这里函数内部打印的值为10，`defer`语句中打印的值为5，因为`defer`语句具有预计算参数的作用，意思就是我们在注册`defer`语句的时候，`defer`语句中的值就已经被计算出来了，所以`defer`语句中的`i`在注册时就被赋值了。
 
@@ -102,7 +102,7 @@ func deferExample5() {
 }
 ```
 
-![image-20231107223834078](/defer%E5%8E%9F%E7%90%86.assets/43bf2c43a0924750ba21160e69129866tplv-k3u1fbpfcp-jj-mark3024000q75.webp)
+![image-20231107223834078](./defer%E5%8E%9F%E7%90%86.assets/43bf2c43a0924750ba21160e69129866tplv-k3u1fbpfcp-jj-mark3024000q75.webp)
 
 但是在**使用闭包捕获函数体内的变量到`defer`注册的函数中**时，情况就会发生变化，示例如下：
 
@@ -117,7 +117,7 @@ func deferExample6() {
 }
 ```
 
-![image-20231107224112457](/defer%E5%8E%9F%E7%90%86.assets/573768b7567b4a85a915a2f9838f33dctplv-k3u1fbpfcp-jj-mark3024000q75.webp)
+![image-20231107224112457](./defer%E5%8E%9F%E7%90%86.assets/573768b7567b4a85a915a2f9838f33dctplv-k3u1fbpfcp-jj-mark3024000q75.webp)
 
 在这里我们得到了相同的输出，这是因为`defer`函数在注册时将该变量捕获到函数内部了，而`defer`语句是在函数返回期间执行的，这里`defer函数`内部的`i`和函数内部的`i`指向的是同一个变量地址，所以`defer函数`会和函数打印同样的值。
 
@@ -136,17 +136,17 @@ func deferExample7() (i int) {
 }
 ```
 
-![image-20231107225428455](/defer%E5%8E%9F%E7%90%86.assets/aa44ff9bd6a145cbab745c2976e0342etplv-k3u1fbpfcp-jj-mark3024000q75.webp)
+![image-20231107225428455](./defer%E5%8E%9F%E7%90%86.assets/aa44ff9bd6a145cbab745c2976e0342etplv-k3u1fbpfcp-jj-mark3024000q75.webp)
 
 如果根据上面的闭包规则，那么我们预期得到的结果应该是3，因为在最后3被赋予了i，但是由于这是一个命名返回参数，而`defer`语句又是在返回期间执行的，所以我们得到了5，用下面这张图来解释这个现象：
 
-![image-20231107230151521](/defer%E5%8E%9F%E7%90%86.assets/5a5bd3a259dc4495be4e1cd0b9329935tplv-k3u1fbpfcp-jj-mark3024000q75.webp)
+![image-20231107230151521](./defer%E5%8E%9F%E7%90%86.assets/5a5bd3a259dc4495be4e1cd0b9329935tplv-k3u1fbpfcp-jj-mark3024000q75.webp)
 
 这样我们就清晰的知道，为什么用闭包捕获一个命名返回值会出现这种不同的作用了，这是由于`defer`语句是在函数返回期间执行的，而`defer`语句又在注册的时候闭包捕获了命名返回值i获得了i的地址，所以函数在返回的时候将返回值赋给命名返回值，此时命名返回值i的值就发生了变化，而赋予返回值之后，才开始执行函数调用的清理工作，比如释放栈帧和执行`defer`语句，所以`defer`语句中使用的命名返回值是最新的值5。
 
 还有一点就是，我们在使用`defer`的时候，不能只在`defer`关键字之后定义一个匿名函数，而不调用它，这样是错误的。
 
-![image-20231109200855177](/defer%E5%8E%9F%E7%90%86.assets/4b1c3674021f4aefa423719df1b4b565tplv-k3u1fbpfcp-jj-mark3024000q75.webp)
+![image-20231109200855177](./defer%E5%8E%9F%E7%90%86.assets/4b1c3674021f4aefa423719df1b4b565tplv-k3u1fbpfcp-jj-mark3024000q75.webp)
 
 综上所述，我们使用`defer`时要注意如下几点：
 
@@ -170,7 +170,7 @@ Go语言中的异常与错误和其他语言中的异常与错误有一定的区
 
 对于错误（error），我们一般是这样处理的：
 
-![Copypasting "if err!= nil {return err;} everywhere : r/golang](/defer%E5%8E%9F%E7%90%86.assets/93003b410d5f4008ad66f72f0d16bfb2tplv-k3u1fbpfcp-jj-mark3024000q75.webp)
+![Copypasting "if err!= nil {return err;} everywhere : r./golang](./defer%E5%8E%9F%E7%90%86.assets/93003b410d5f4008ad66f72f0d16bfb2tplv-k3u1fbpfcp-jj-mark3024000q75.webp)
 
 咳咳，正经的说，因为Go语言中的error是一个接口，所以返回的错误总是一个值，我们可以通过对这个值进行判断来了解当前发生了什么错误，并且知道该如何处理该错误。例如：
 
@@ -232,7 +232,7 @@ func main() {
 
 对于这段代码，运行的结果如下：
 
-![image-20231109202428036](/defer%E5%8E%9F%E7%90%86.assets/358a3121180b43808b92004cfc244709tplv-k3u1fbpfcp-jj-mark3024000q75.webp)
+![image-20231109202428036](./defer%E5%8E%9F%E7%90%86.assets/358a3121180b43808b92004cfc244709tplv-k3u1fbpfcp-jj-mark3024000q75.webp)
 
 我们再来看一个例子，对比着看：
 
@@ -264,7 +264,7 @@ func main() {
 
 这个例子的输出如下：
 
-![image-20231109202517472](/defer%E5%8E%9F%E7%90%86.assets/3758accab0844e4da8ea0728be9b2bd9tplv-k3u1fbpfcp-jj-mark3024000q75.webp)
+![image-20231109202517472](./defer%E5%8E%9F%E7%90%86.assets/3758accab0844e4da8ea0728be9b2bd9tplv-k3u1fbpfcp-jj-mark3024000q75.webp)
 
 从以上的两个例子中，我们可以简单的得出一个结论，**当一个函数内部发生了`panic`，如果在发生`panic`之前，函数内部注册了`defer`语句，那么`panic`会被推迟到所有`defer`语句执行完毕。如果注册了多个`defer`语句，这多个`defer`语句中有一个或者多个发生了`panic`，都不会影响剩下的`defer`语句执行，只是会将`panic`的信息记录下来，直到所有`defer`语句执行完毕，再和函数内部发生的`panic`一起返回到上层函数，如果上层函数没有捕获，那么该`panic`就会导致程序崩溃。**
 

@@ -2,7 +2,7 @@
 
 import { cn } from "@/utils";
 import { ComponentProps, useState } from "react";
-import { GoFoldDown, GoFoldUp } from "react-icons/go";
+import { GoFoldDown, GoFoldUp } from "react-icons./go";
 
 type Props = {
   category: string;

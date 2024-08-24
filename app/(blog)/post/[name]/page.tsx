@@ -7,11 +7,12 @@ import path from "path";
 import Markdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import remarkGfm from "remark-gfm";
+import Image from "next/image";
 
 export default async function Page({ params }: { params: { name: string } }) {
   const res = await getContentByName(decodeURIComponent(params.name));
-  if(res==null){
-    redirect("/")
+  if (res == null) {
+    redirect("/");
   }
   return (
     <>
@@ -47,6 +48,21 @@ export default async function Page({ params }: { params: { name: string } }) {
             remarkPlugins={[remarkGfm]}
             children={res?.content}
             components={{
+              img: ({ node, ...props }) => {
+                let postPath = res.path.split(path.sep).slice(1, -1).join("/");
+                // get path last 2 elements
+                let imgName = props.src?.split("/").slice(-2).join("/");
+                let imgPath = "/" + postPath + "/" + imgName!;
+                return (
+                  <Image
+                    src={imgPath}
+                    alt="image"
+                    width={400}
+                    height={400}
+                    className="h-auto w-auto rounded-md"
+                  />
+                );
+              },
               code(props) {
                 const { children, className, node, ...rest } = props;
                 const match = /language-(\w+)/.exec(className || "");

@@ -47,8 +47,8 @@ void main(List<String> args) {
 }
 
 ```
-![请添加图片描述](/Dart%E5%BA%93%E5%92%8C%E5%AF%BC%E5%85%A5.assets/99fe8ccdbb7fb10773ca08a93d3fa6f2.png)
-![在这里插入图片描述](/Dart%E5%BA%93%E5%92%8C%E5%AF%BC%E5%85%A5.assets/f08d256bb63b41b0393fd044aa74e960.png)
+![请添加图片描述](./Dart%E5%BA%93%E5%92%8C%E5%AF%BC%E5%85%A5.assets/99fe8ccdbb7fb10773ca08a93d3fa6f2.png)
+![在这里插入图片描述](./Dart%E5%BA%93%E5%92%8C%E5%AF%BC%E5%85%A5.assets/f08d256bb63b41b0393fd044aa74e960.png)
 将以上代码示例放入同一目录的两个dart文件中即可运行。
 
 ## 导入Libraries

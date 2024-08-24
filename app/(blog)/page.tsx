@@ -2,7 +2,6 @@ import Link from "next/link";
 import { getPagePosts, getPages } from "../actions";
 import PostCard from "@/components/PostCard/PostCard";
 import { cn } from "@/utils";
-import TagsCard from "@/components/TagsCard/TagsCard";
 
 export default async function Home({
   searchParams,

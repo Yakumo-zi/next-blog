@@ -81,7 +81,7 @@ export async function getPostMetadata() {
 
 export async function getPagePosts(page: number) {
     const fileList = await getSortedPosts()
-    return fileList?.slice((page - 1) * 5, page * 5).map(({ meta, filename }) => ({ meta, filename }))
+    return fileList?.slice((page - 1) * 5, page * 5).map(({ meta, filename ,path}) => ({ meta, filename,path }))
 }
 
 export async function getPages() {

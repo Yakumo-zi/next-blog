@@ -61,11 +61,11 @@ abstract class Cache<T> {
 
 我们来给出一个例子，就能看到使用泛型和使用Object的区别了：
 
-![image-20231003094651140](/Dart%E6%B3%9B%E5%9E%8B.assets/897b8110242e6a9f37f2e8682c5c714d.png)
+![image-20231003094651140](./Dart%E6%B3%9B%E5%9E%8B.assets/897b8110242e6a9f37f2e8682c5c714d.png)
 
-![image-20231003094722548](/Dart%E6%B3%9B%E5%9E%8B.assets/689b96b5f0cc0797e65c0b7c0aa58c09.png)
+![image-20231003094722548](./Dart%E6%B3%9B%E5%9E%8B.assets/689b96b5f0cc0797e65c0b7c0aa58c09.png)
 
-![image-20231003094818444](/Dart%E6%B3%9B%E5%9E%8B.assets/8a36529a3d943133e5feea382e025386.png)
+![image-20231003094818444](./Dart%E6%B3%9B%E5%9E%8B.assets/8a36529a3d943133e5feea382e025386.png)
 
 通过上述示例，我们可以看到，使用ObjectCache和GenericCache，IDE给出的支持完全是两个级别的，ObjectCache编译器完全不知道它是什么类型，只能给出Object上的基础方法，而GenericCache可以通过我们给出的类型信息，来进行静态分析，从而得到更友好的提示。如果想要从ObjectCache中得到提示，则需要使用type check运算符，用as进行转换才可以。
 
@@ -151,11 +151,11 @@ class GenericCache<K, V> {
 
 在Dart中，我们使用`<type extends constraints_type>`这种语法来进行泛型约束，这种语法表示type必须实现了constraints_type的方法或者说特性，如果没有实现，那么在静态分析的时候就会报错。
 
-![image-20231003101634501](/Dart%E6%B3%9B%E5%9E%8B.assets/1045f5c97ca28661ec0f2aac0a27e5af.png)
+![image-20231003101634501](./Dart%E6%B3%9B%E5%9E%8B.assets/1045f5c97ca28661ec0f2aac0a27e5af.png)
 
 就像这里一样，我们的testGeneric期望传入一个可以调用的函数，但是我们传入了一个字符串，字符串是不能被调用的，所以就会给我们报错。
 
-![image-20231003101804555](/Dart%E6%B3%9B%E5%9E%8B.assets/65d0f303cfcc161d8a580cf00ee2c44e.png)
+![image-20231003101804555](./Dart%E6%B3%9B%E5%9E%8B.assets/65d0f303cfcc161d8a580cf00ee2c44e.png)
 
 当我们传入一个函数时，这里就可以通过检查了，但是要注意，我们这里F是被一个无返回值无参数可调用的类型约束了，所以我们只能传入一个无返回值无参数可调用的类型，否则还是会无法通过检查。
 

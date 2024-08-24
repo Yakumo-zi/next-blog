@@ -150,7 +150,7 @@ inet_ntop：进行相反的转换，前三个参数的含义与 inet_pton 相同
 
 #### socket 基础 API
 
-UNIX/Linux 的一个哲学是：所有东西都是文件。socket 也不例外，它就是可读、可写、可控制、可关闭的文件描述符。下面的 socket 系统调用可创建一个 socket：
+UNIX./Linux 的一个哲学是：所有东西都是文件。socket 也不例外，它就是可读、可写、可控制、可关闭的文件描述符。下面的 socket 系统调用可创建一个 socket：
 
 ```c
 #include＜sys/types.h＞
@@ -369,6 +369,6 @@ int setsockopt(int sockfd,int level,int option_name,constvoid*option_value,sockl
 ```
 
 sockfd 参数指定被操作的目标 socket。level 参数指定要操作哪个协议的选项（即属性），比如 IPv4、IPv6、TCP 等。option_name 参数则指定选项的名字。option_value 和 option_len 参数分别是被操作选项的值和长度。
-![image-20240810210412926](/Linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8BAPI.assets/image-20240810210412926.png)
+![image-20240810210412926](./Linux%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8BAPI.assets/image-20240810210412926.png)
 
 getsockopt 和 setsockopt 这两个函数成功时返回 0，失败时返回-1 并设置 errno。

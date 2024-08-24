@@ -46,7 +46,7 @@ void main(List<String> args) {
 
 ```
 
-![image-20231002134639367](/Dart%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%9E%8B.assets/3fb7dcf6e41f4ef6baa88e11f0831ae2.png)
+![image-20231002134639367](./Dart%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%9E%8B.assets/3fb7dcf6e41f4ef6baa88e11f0831ae2.png)
 
 可以看到，我们使用字面量创建的`map`和使用构造函数创建的`map`并没有什么不同，类型都是一样的。
 
@@ -87,12 +87,12 @@ Dart中的基础数据类型，有如下几种：`Numbers`，`Strings`，`Boolea
 ```dart
 var x=1;       //这是int类型的
 var y=1.0;     //这是double类型的
-var ex=1.42e5; //dart也支持科学计数法
+var ex=1.42e5; /./Dart也支持科学计数法
 ```
 
 要注意的是，在Dart中你无法给一个int类型的赋予一个double类型的值。但是我们知道int和double都是继承自`num`，所以需要将一个int赋予给double，我们可以声明一个num类型的值来接收（**虽然你不能将一个double类型的值赋予给一个int类型的，但是你可以将一个int类型的值赋予给一个double类型**）：
 
-![image-20231002142843182](/Dart%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%9E%8B.assets/be066399028db58936233316ef0f1ae4.png)
+![image-20231002142843182](./Dart%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%9E%8B.assets/be066399028db58936233316ef0f1ae4.png)
 
 ## Strings
 
