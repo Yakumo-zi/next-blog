@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Next Blog
 
-## Getting Started
+这是一个由Next.js与Tailwind Css编写而成的静态博客。
 
-First, run the development server:
+# requirements
 
-```bash
++ node.js >=20.11.1
+
+# Installation
+
+```
+git clone https://github.com/Yakumo-zi/next-blog
+cd next-blog
+npm i
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Usage
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+只需要将博客及其相关静态资源放入`public\posts`目录下即可，如果在博客中使用了外链，那么需要在`next.config.mjs`中配置允许外链的域名
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```js
+const nextConfig = {
+    images:{
+        dangerouslyAllowSVG:true,
+        remotePatterns:[
+            {
+                protocol:"https",
+                hostname:"camo.githubusercontent.com",
+                port:'',
+                pathname:"/**"
+            },
+        ]
+    }
+};
 
-## Learn More
+export default nextConfig;
+```
+# Deploy
 
-To learn more about Next.js, take a look at the following resources:
+```
+git clone https://github.com/Yakumo-zi/next-blog
+cd next-blog
+npm i
+npm run build
+npm run start
+```
+使用Nginx反向代理到localhost:3000端口即可部署完成。
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+# TODO
+ - [ ] 后台管理
+ - [ ] 使用docker一键部署
