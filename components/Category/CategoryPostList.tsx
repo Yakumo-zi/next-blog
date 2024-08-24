@@ -13,7 +13,7 @@ type Props = {
   }>;
 };
 const CategoryPostList = ({ category, fileList }: Props) => {
-  const [expand, setExpand] = useState(true);
+  const [expand, setExpand] = useState(false);
   //caculate the height of posts in the category
 
   let maxHeight = 0;
