@@ -8,6 +8,7 @@ import Markdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import remarkGfm from "remark-gfm";
 import Image from "next/image";
+import ZoomImage from "@/components/ZoomImage/ZoomImage";
 
 export default async function Page({ params }: { params: { name: string } }) {
   const res = await getContentByName(decodeURIComponent(params.name));
@@ -48,19 +49,14 @@ export default async function Page({ params }: { params: { name: string } }) {
             remarkPlugins={[remarkGfm]}
             children={res?.content}
             components={{
+              p:"div",
               img: ({ node, ...props }) => {
                 let postPath = res.path.split(path.sep).slice(1, -1).join("/");
                 // get path last 2 elements
                 let imgName = props.src?.split("/").slice(-2).join("/");
                 let imgPath = "/" + postPath + "/" + imgName!;
                 return (
-                  <Image
-                    src={imgPath}
-                    alt="image"
-                    width={400}
-                    height={400}
-                    className="h-auto w-auto rounded-md"
-                  />
+                  <ZoomImage src={imgPath} alt={`${imgPath} load failed`} />
                 );
               },
               code(props) {

@@ -59,7 +59,7 @@ type Context interface{
 
 唯一的区别它们分别实现了context.stringer接口，`backgroundCtx.String()`会返回"context.Background"，`todoCtx.String()`会返回"context.TODO"，标准库中的实现如下：
 
-![image-20240823222842693](./context%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.assets/image-20240823222842693.png)、
+![image-20240823222842693](./context%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86.assets/image-20240823222842693.png)
 
 ## cancelCtx
 
