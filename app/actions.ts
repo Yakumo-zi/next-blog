@@ -5,7 +5,7 @@ import fs from 'node:fs'
 import path from 'node:path';
 
 export type PostMeta = {
-    title: string, published: string, tags: Array<string>, category: string, description: string,
+    title: string, published: string, tags: Array<string>, category: string, description: string,draft:boolean,
 }
 export type BlogPost = {
     meta: PostMeta,
@@ -34,7 +34,7 @@ async function readPostsDirectory() {
         const content = (await getPostContent(filename))
         if (!content) continue
         let basename=path.basename(filename)
-        if(!basename.endsWith(".md") && !basename.endsWith(".mdx")) continue
+        if(!basename.endsWith(".md") && !basename.endsWith(".mdx") || content.meta.draft) continue
         if(!posts.has(basename)) posts.set(basename,{ meta: content.meta,filename:basename , content: content.content,path:filename })
     }
 }

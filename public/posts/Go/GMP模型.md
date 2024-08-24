@@ -5,7 +5,7 @@ description: "GMP模型原理"
 image: ""
 tags: [Go, 学习笔记]
 category: "Go"
-draft: false
+draft: true
 ---
 
 g：goroutine
