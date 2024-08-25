@@ -65,7 +65,7 @@ export default async function Page({ params }: { params: { name: string } }) {
                 return match ? (
                   <div className="relative">
                     <CopyButton code={String(children).replace(/\n$/, "")} />
-                    <Tag className="absolute right-10 top-1 bg-violet-50 hover:transform-none min-w-[20px] min-h-[20px] box-border m-0">
+                    <Tag className="absolute right-10 top-1 m-0 box-border min-h-[20px] min-w-[20px] bg-stone-50 hover:transform-none">
                       {match[1]}
                     </Tag>
                     <SyntaxHighlighter
@@ -81,7 +81,7 @@ export default async function Page({ params }: { params: { name: string } }) {
                 ) : (
                   <code
                     {...rest}
-                    className="rounded-md bg-white px-2 text-red-600 before:content-[''] after:content-['']"
+                    className="rounded-md bg-white px-2 text-red-600"
                   >
                     {children}
                   </code>
