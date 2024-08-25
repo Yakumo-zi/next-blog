@@ -65,6 +65,9 @@ export default async function Page({ params }: { params: { name: string } }) {
                 return match ? (
                   <div className="relative">
                     <CopyButton code={String(children).replace(/\n$/, "")} />
+                    <Tag className="absolute right-10 top-1 bg-violet-50 hover:transform-none min-w-[20px] min-h-[20px] box-border m-0">
+                      {match[1]}
+                    </Tag>
                     <SyntaxHighlighter
                       language={match[1]}
                       PreTag="div"
